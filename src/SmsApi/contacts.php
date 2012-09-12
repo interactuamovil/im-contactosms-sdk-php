@@ -9,11 +9,12 @@ class ContactsApi extends ApiRequest {
     public $CANCELLED = 2;
 
     /**
-     * @param bool|null $status
-     * @param string|null $first_name
-     * @param string|null $last_name
-     * @param string|null $start
-     * @param string|null $limit
+     * Obtiene la lista de contactos según los parametros indicados
+     * @param bool|null $status Estado del contacto, puede ser uno de CONFIRMED (1), PENDING (0) o CANCELLED (2)
+     * @param string|null $first_name El nombre del contacto
+     * @param string|null $last_name El apellido del contacto
+     * @param string|null $start Utilizado para paginación
+     * @param string|null $limit Utilizado para paginación
      * @return mixed
      */
     public function get_list($status=null, $first_name=null, $last_name=null, $start=null, $limit=null){
@@ -37,10 +38,9 @@ class ContactsApi extends ApiRequest {
 	}
 
 	/**
-	 *
-	 * Get contact by msisdn
-	 * @param string $msisdn
-     * @return \object|mixed
+	 * Obtiene un contacto en base a su MSISDN (código de país + número de teléfono)
+	 * @param string $msisdn Código de país + número de teléfono del contacto
+     * @return mixed
      */
 	public function get_by_msisdn($msisdn)
 	{
@@ -50,12 +50,11 @@ class ContactsApi extends ApiRequest {
 	}
 
 	/**
-	 *
-	 * Updates contact base on msisdn
-	 * @param string $msisdn
-	 * @param string $first_name
-	 * @param string $last_name
-	 * @param string $new_msisdn
+	 * Actualiza la información de un contacto en base a su MSISDN (código de país + número de telefono)
+	 * @param string $msisdn Código de país + número de teléfono del contacto a actualizar
+	 * @param string $first_name Nombre del contacto
+	 * @param string $last_name Apellido del contacto
+	 * @param string $new_msisdn Requerido si se quiere cambiar el número de teléfono asociado al contacto
      * @return object|mixed
      */
 	public function update($msisdn, $first_name=null, $last_name=null, $new_msisdn=null)
@@ -82,12 +81,11 @@ class ContactsApi extends ApiRequest {
 	}
 
 	/**
-	 *
-	 * Adds a new contact
-	 * @param string $msisdn
-	 * @param string $first_name
-	 * @param string $last_name
-     * @return object|mixed
+	 * Agregar un nuevo contacto
+	 * @param string $msisdn Código de país + número de teléfono del contacto a agregar
+	 * @param string $first_name Nombre del contacto
+	 * @param string $last_name Apellido del contacto
+     * @return mixed
      */
 	public function add($msisdn, $first_name=null, $last_name=null)
 	{
@@ -110,8 +108,7 @@ class ContactsApi extends ApiRequest {
 	}
 
 	/**
-	 *
-	 * Deletes a contact
+	 * Borra el contacto indicado por el parámetro MSISDN (código de país + número de telefono)
 	 * @param string $msisdn
      * @return object|mixed
      */
@@ -124,10 +121,9 @@ class ContactsApi extends ApiRequest {
 	}
 
 	/**
-	 *
-	 * Gets contact's groups list
-	 * @param string $msisdn
-     * @return object|mixed
+	 * Obtiene los grupos a los que pertenece un contacto
+	 * @param string $msisdn Código de país + número de teléfono del contacto
+     * @return mixed
      */
 	public function get_group_list($msisdn)
 	{

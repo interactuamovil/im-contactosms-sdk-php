@@ -6,7 +6,8 @@ require_once 'SmsApi/messages.php';
 require_once 'SmsApi/accounts.php';
 
 /**
- *
+ * Clase que contiene las diferentes llamadas al API, incluyendo llamadas
+ * para trabajar con contactos, grupos, mensajes y cuentas.
  */
 class SmsApi {
 
@@ -18,9 +19,9 @@ class SmsApi {
 	public $account;
 
     /**
-     * @param $api_key
-     * @param $secret_key
-     * @param $api_url
+     * @param string $api_key
+     * @param string $secret_key
+     * @param string $api_url
      */
     function SmsApi($api_key, $secret_key, $api_url){
 		$this->contacts	= new ContactsApi($api_key, $secret_key, $api_url);

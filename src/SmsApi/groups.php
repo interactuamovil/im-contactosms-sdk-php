@@ -5,8 +5,7 @@ require_once 'request.php';
 class GroupsApi extends ApiRequest{
 
 	/**
-	 *
-	 * Gets groups list
+	 * Listado de grupos
 	 */
 	public function get_list()
 	{
@@ -14,10 +13,9 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Gets groups data base on its short name
-	 * @param string $short_name
-     * @return object|mixed
+	 * Obtiene un grupo en base a su nombre corto
+	 * @param string $short_name Nombre corto del grupo
+     * @return mixed
      */
 	public function get($short_name)
 	{
@@ -27,13 +25,12 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Updates groups info
-	 * @param string $short_name
-	 * @param string $name
-	 * @param string $description
-	 * @param string $new_short_name
-     * @return object|mixed
+	 * Actualiza la información del grupo indicado por el nombre corto del grupo
+	 * @param string $short_name Nombre corto del grupo
+	 * @param string $name Nombre del grupo
+	 * @param string $description Descripción del grupo
+	 * @param string $new_short_name Nuevo nombre corto del grupo si se desea cambiar
+     * @return mixed
      */
 	public function update($short_name, $name, $description=null, $new_short_name=null)
 	{
@@ -53,12 +50,11 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Adds a new groups
-	 * @param string $short_name
-	 * @param string $name
-	 * @param string $description
-     * @return object|mixed
+	 * Agrega un nuevo grupo
+     * @param string $short_name Nombre corto del grupo
+     * @param string $name Nombre del grupo
+     * @param string $description Descripción del grupo
+     * @return mixed
      */
 	public function add($short_name, $name, $description=null)
 	{
@@ -76,10 +72,9 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Desactivates a groups
-	 * @param string $short_name
-     * @return object|mixed
+	 * Borra el grupo indicado por el nombre corto del mismo
+	 * @param string $short_name Nombre corto del grupo a borrar
+     * @return mixed
      */
 	public function delete($short_name)
 	{
@@ -90,10 +85,9 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Gets group contacts'
-	 * @param string $short_name
-     * @return object|mixed
+	 * Obtiene los contactos de un grupo
+	 * @param string $short_name Nombre corto del grupo
+     * @return mixed
      */
 	public function get_contact_list($short_name)
 	{
@@ -104,11 +98,10 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Adds a contact to a groups
-	 * @param string $short_name
-	 * @param string $msisdn
-     * @return object|mixed
+	 * Agregar un contacto un grupo
+	 * @param string $short_name Nombre corto del grupo al que se agregará el contacto
+	 * @param string $msisdn Código de país + número de teléfono del contacto a agregar
+     * @return mixed
      */
 	public function add_contact($short_name, $msisdn)
 	{
@@ -119,11 +112,10 @@ class GroupsApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Removes a contact from a group
-	 * @param string $short_name
-	 * @param string $msisdn
-     * @return object|mixed
+	 * Elimina un contacto del grupo
+     * @param string $short_name Nombre corto del grupo al que se agregará el contacto
+     * @param string $msisdn Código de país + número de teléfono del contacto a eliminar del grupo
+     * @return mixed
      */
 	public function remove_contact($short_name, $msisdn)
 	{

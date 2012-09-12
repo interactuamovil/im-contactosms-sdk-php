@@ -5,14 +5,13 @@ require_once 'request.php';
 class MessagesApi extends ApiRequest{
 
 	/**
-	 *
-	 * Get messages log
-	 * @param string $start_date
-	 * @param string $end_date
-	 * @param string $start
-	 * @param string $limit
-	 * @param string $msisdn
-     * @return object|mixed
+	 * Obtiene el listado de mensajes enviados
+	 * @param string $start_date Fecha desde la que se quieren obtener mensajes
+	 * @param string $end_date Fecha hasta la que se quieren obtener mensajes
+	 * @param string $start Utilizado para paginado
+	 * @param string $limit Utilizado para paginado
+	 * @param string $msisdn Código de país + número de teléfono para obtener solo los mensajes de un contacto
+     * @return mixed
      */
 	public function get_list($start_date=null, $end_date=null, $start=null, $limit=null, $msisdn=null)
 	{
@@ -32,11 +31,10 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Sends message to groups
-	 * @param array $short_name
-	 * @param string $message
-     * @return object|mixed
+	 * Envía un mensaje a un grupo
+	 * @param array $short_name Nombre corto del grupo al que se envía el mensaje
+	 * @param string $message Mensaje que se desea enviar al grupo
+     * @return mixed
      */
 	public function send_to_groups($short_name, $message)
 	{
@@ -50,11 +48,10 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Sends message to contact
-	 * @param string $msisdn
-	 * @param string $message
-     * @return object|mixed
+	 * Envia un mensaje a un contacto
+	 * @param string $msisdn Código de país + número de teléfono del contacto al que se envía el mensaje
+	 * @param string $message Mensaje que se desea enviar al contacto
+     * @return mixed
      */
 	public function send_to_contact($msisdn, $message)
 	{
@@ -66,8 +63,7 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Gets the schedule messages
+     * Obtiene los mensajes calendarizados
 	 */
 	public function get_schedule()
 	{
@@ -75,10 +71,9 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Deletes a schedule message
-	 * @param int $message_id
-     * @return object|mixed
+	 * Elimina un mensaje calendarizado
+	 * @param int $message_id El ID del mensaje calendarizado a borraer
+     * @return mixed
      */
 	public function remove_schedule($message_id)
 	{
@@ -86,8 +81,7 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Adds a new schedule messsage
+	 * Agrega un nuevo mensaje calendarizado
 	 * @param string $start_date
      * @param string $end_date
      * @param string $name
@@ -115,8 +109,7 @@ class MessagesApi extends ApiRequest{
 	}
 
 	/**
-	 *
-	 * Gets the inbox messages
+	 * Obtiene los mensajes de la bandeja de entrada
 	 * @param string $start_date
 	 * @param string $end_date
 	 * @param int $start
@@ -143,6 +136,5 @@ class MessagesApi extends ApiRequest{
 
 		return $this->call("messages/messages_inbox", $p, 'get', null, true);
 	}
-
 
 }
