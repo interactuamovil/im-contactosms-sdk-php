@@ -8,7 +8,7 @@ para utilizar el API.
 
 Ejemplo de creación de instancia del api:
 
-    require 'im-sdk-php/src/SmsApi.php';
+    require 'im-contactosms-sdk-php/src/SmsApi.php';
     $api = new SmsApi(API_KEY, API_SECRET_KEY, API_URL);
 
 Para hacer llamadas al API puede utilizarse `contacts`, `groups`, `messages` y
