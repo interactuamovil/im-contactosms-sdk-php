@@ -4,7 +4,6 @@ function hr() {
     echo '<hr />';
 }
 
-
 /**
  * Echoes a pre tag with a message
  * @param string $message

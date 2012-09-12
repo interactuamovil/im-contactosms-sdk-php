@@ -1,7 +1,7 @@
 <?php
 
-include('settings.php');
-include('../SmsApi.php');
+require_once('settings.php');
+require_once('../src/SmsApi.php');
 
 $examples = array(
     'accounts' => 'AccountsExample',
@@ -12,7 +12,7 @@ $examples = array(
 
 if (isset($_GET['example']) && array_key_exists($_GET['example'], $examples)) {
     $example_name = $_GET['example'];
-    include("$example_name.php");
+    include($example_name.'.php');
     $example = new $examples[$example_name](API_KEY, API_SECRET_KEY, API_URL);
 }
 else { ?>
