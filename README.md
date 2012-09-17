@@ -19,3 +19,7 @@ Para hacer llamadas al API puede utilizarse `contacts`, `groups`, `messages` y
     $groups = $api->groups->get_list();
     $messages = $api->messages->get_list();
 
+Documentación
+-------------
+
+La documentación del SDK PHP se encontra en el wiki: [Ver documentación](https://github.com/interactuamovil/im-contactosms-sdk-php/wiki)
