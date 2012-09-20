@@ -12,6 +12,7 @@ class MessagesExample extends BaseExample {
         $messages_examples = array(
             '_list',
             '_list_contact',
+            '_list_inbox',
             'single',
             'group',
         );
@@ -102,6 +103,34 @@ class MessagesExample extends BaseExample {
         }
         else {
             include('includes/messages/group.php');
+        }
+
+    }
+
+    public function _list_inbox() {
+
+        $today = date('Y-m-d');
+        $one_month_ago = strtotime ('-7 day' , strtotime($today));
+        $inbox = $this->api->messages->inbox($one_month_ago, $today);
+
+        if (!empty($inbox)) {
+            if (isset($inbox->error)) {
+                error('Error: '.$inbox->error);
+            }
+            else {
+            $i = 1;
+                foreach ($inbox as $message) {
+                    pre('Mensaje: '.$message->message);
+                    pre('Fecha: '.$message->created_on);
+                    pre('Enviado por: '.$message->msisdn);
+                    pre('Status: '.$message->status);
+                    hr();
+                    $i++;
+                }
+            }
+        }
+        else {
+            error('No hay mensajes en la bandeja de entrada.');
         }
 
     }
