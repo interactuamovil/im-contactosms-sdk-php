@@ -134,7 +134,7 @@ class MessagesApi extends ApiRequest{
 		if (!empty($status))
 			$p['status']	=	$status;
 
-		return $this->call("messages/messages_inbox", $p, 'get', null, true);
+		return $this->call("messages/inbox", $p, 'get', null, true);
 	}
 
 }
