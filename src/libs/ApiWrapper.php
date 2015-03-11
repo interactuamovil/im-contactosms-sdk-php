@@ -10,14 +10,16 @@ class ApiWrapper {
     var $apiKey;
     var $apiSecret;
     var $apiUrl;
+    var $assoc;
 
-    function __construct($apiKey, $apiSecret, $apiUrl){
+    function __construct($apiKey, $apiSecret, $apiUrl, $assoc){
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
         if ($apiUrl[strlen($apiUrl)-1] !== '/') {
             $apiUrl .= '/' ;
         }
         $this->apiUrl = $apiUrl;
+        $this->assoc = $assoc;
     }
 
     public function checkContactStatus($status){
@@ -34,7 +36,16 @@ class ApiWrapper {
         if ($boolean && $value!='1' && $value!='0') throw new Exception("Value $value is not 0 or 1.");
     }
 
+    public function checkDate(&$value, $required=false){
+        if (!$value && !$required) return;
+        if (!is_numeric($value)) $value = strtotime($value);
+        if (!$value) throw new Exception("Value $value is not a date.");
+        $value = date("Y-m-d H:i:s",$value);
+    }
 
+    public function checkArray($value, $required=false){
+        if (!is_array($value)) throw new Exception("$value is not an array");
+    }
 
 
     public function getParamsString($params){
@@ -107,16 +118,19 @@ class ApiWrapper {
         );
         $context = stream_context_create($options);
         $data = file_get_contents($url,false, $context);
-        $json = json_decode($data,true);
+        $json = json_decode($data,$this->assoc);
         // var_dump($http_response_header);
         $has_code = preg_match('/\ (\d+)\ /', $http_response_header[0], $response_code);
         if ($has_code) $response_code = $response_code[1];
         else $response_code = null;
+        $has_status = preg_match('/\ ([^\ ]+)$/', $http_response_header[0], $status);
+        if ($has_status) $status = $status[1];
         $data = array(
             'code' => $response_code,
+            'status' => $status,
             'response_headers' => $http_response_header,
             'data' => $json,
         );
-        return $data;
+        return $this->assoc?$data:(object)$data;
     }
 }

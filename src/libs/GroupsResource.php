@@ -3,8 +3,8 @@ include_once("ApiWrapper.php");
 
 class GroupsResource extends ApiWrapper {
 
-    function __construct($apiKey, $apiSecret, $apiUrl){
-        parent::__construct($apiKey,$apiSecret,$apiUrl);
+    function __construct($apiKey, $apiSecret, $apiUrl,$assoc){
+        parent::__construct($apiKey,$apiSecret,$apiUrl,$assoc);
     }
 
     

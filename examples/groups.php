@@ -1,7 +1,7 @@
 <?php
-include("../src/IMApi.php");
+include("../src/SmsApi.php");
 
-$api = new IMApi("n90GovNeANyXaZWFkGC3TRhVAByRxrVg", "UE3BY99Kk2BUnfqJAq8YqqNnyy5pZ86Q", "http://localhost:8088/api");
+$api = new SmsApi("n90GovNeANyXaZWFkGC3TRhVAByRxrVg", "UE3BY99Kk2BUnfqJAq8YqqNnyy5pZ86Q", "http://localhost:8088/api");
 
 print ("Getting groups...");
 var_dump($api->groups()->getGroups());

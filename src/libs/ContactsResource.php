@@ -3,8 +3,8 @@ include_once("ApiWrapper.php");
 
 class ContactsResource extends ApiWrapper {
 
-    function __construct($apiKey, $apiSecret, $apiUrl){
-        parent::__construct($apiKey,$apiSecret,$apiUrl);
+    function __construct($apiKey, $apiSecret, $apiUrl,$assoc){
+        parent::__construct($apiKey,$apiSecret,$apiUrl,$assoc);
     }
 
     public function getContacts($query=null, $limit=null,$start=null,$status=null,$shortResults=null){
