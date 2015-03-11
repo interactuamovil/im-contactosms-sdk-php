@@ -89,6 +89,17 @@ class ApiWrapper {
             ),
         );
         $context = stream_context_create($options);
-        return file_get_contents($url,false, $context);
+        $data = file_get_contents($url,false, $context);
+        $json = json_decode($data,true);
+        var_dump($http_response_header);
+        $has_code = preg_match('/\ (\d+)\ /', $http_response_header[0], $response_code);
+        if ($has_code) $response_code = $response_code[1];
+        else $response_code = null;
+        $data = array(
+            'code' => $response_code,
+            'response_headers' => $http_response_header,
+            'data' => $json,
+        );
+        return $data;
     }
 }
