@@ -20,6 +20,23 @@ class ApiWrapper {
         $this->apiUrl = $apiUrl;
     }
 
+    public function checkContactStatus($status){
+        if ($status){
+            if (!in_array($status,array(
+                "SUSCRIBED","CONFIRMED","CANCELLED","INVITED",
+            ))) throw new Exception("Status is not a valid status");
+        }
+    }
+
+    public function checkInteger($value, $boolean=false){
+        if (!$value) return;
+        if (!is_numeric($value)) throw new Exception("Value $value is not numeric.");
+        if ($boolean && $value!='1' && $value!='0') throw new Exception("Value $value is not 0 or 1.");
+    }
+
+
+
+
     public function getParamsString($params){
         if ($params) {
             if (!is_array($params) && !is_object($params)) throw new Exception('expected array or object in $params');
@@ -66,19 +83,19 @@ class ApiWrapper {
     public function send($url, $params, $method, $body){
         if ($params) $url = $url."?".$params;
         $datetime = gmdate("D, d M Y H:i:s T");
-        print($datetime."\n");
+        // print($datetime."\n");
         $authentication = $this->apiKey.$datetime.$params.$body;
-        print($authentication."|\n");
-        print($this->apiSecret."|\n");
+        // print($authentication."|\n");
+        // print($this->apiSecret."|\n");
         $hash = hash_hmac("sha1",$authentication, $this->apiSecret,true);
-        print($hash."\n");
+        // print($hash."\n");
         $hash = base64_encode($hash);
         $headers = array(
             "Content-type: application/json",
             "Date: $datetime",
             "Authorization: IM $this->apiKey:$hash",
         );
-        print($hash."\n");
+        // print($hash."\n");
         
         $options = array(
             'http' => array(
@@ -91,7 +108,7 @@ class ApiWrapper {
         $context = stream_context_create($options);
         $data = file_get_contents($url,false, $context);
         $json = json_decode($data,true);
-        var_dump($http_response_header);
+        // var_dump($http_response_header);
         $has_code = preg_match('/\ (\d+)\ /', $http_response_header[0], $response_code);
         if ($has_code) $response_code = $response_code[1];
         else $response_code = null;

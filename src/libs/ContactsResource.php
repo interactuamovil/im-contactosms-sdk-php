@@ -7,23 +7,10 @@ class ContactsResource extends ApiWrapper {
         parent::__construct($apiKey,$apiSecret,$apiUrl);
     }
 
-    public function checkContactStatus($status){
-        if ($status){
-            if (!in_array($status,array(
-                "SUSCRIBED","CONFIRMED","CANCELLED","INVITED",
-            ))) throw new Exception("Status is not a valid status");
-        }
-    }
-
-    public function checkInteger($value, $boolean=false){
-        if (!$value) return;
-        if (!is_numeric($value)) throw new Exception("Value $value is not numeric.");
-        if ($boolean && ($value>1 || $value<0)) throw new Exception("Value $value is not 0 or 1.");
-    }
-
     public function getContacts($query=null, $limit=null,$start=null,$status=null,$shortResults=null){
         $this->checkContactStatus($status);
         $this->checkInteger($start);
+        $this->checkInteger($limit);
         $this->checkInteger($shortResults,true);
         return $this->get("contacts", array(
             'query' => $query,
@@ -32,6 +19,10 @@ class ContactsResource extends ApiWrapper {
             'status' => $status,
             'shortResults' => $shortResults,
         ));
+    }
+
+    public function getContactGroups($msisdn){
+        return $this->get("contacts/$msisdn/groups",array("msisdn" => $msisdn));
     }
 
     public function getContact($msisdn){
@@ -70,7 +61,7 @@ class ContactsResource extends ApiWrapper {
             'custom_field_4' => $field4,
             'custom_field_5' => $field5,
         );
-        return $this->put("contacts/$msisdn", null, $body);
+        return $this->put("contacts/$msisdn", array("msisdn" => $msisdn), $body);
     }
 
     public function deleteContact($msisdn){
