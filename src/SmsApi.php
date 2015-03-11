@@ -1,33 +1,32 @@
 <?php
 
-require_once 'SmsApi/contacts.php';
-require_once 'SmsApi/groups.php';
-require_once 'SmsApi/messages.php';
-require_once 'SmsApi/accounts.php';
+include_once("libs/ContactsResource.php");
+include_once("libs/GroupsResource.php");
+include_once("libs/MessagesResource.php");
 
-/**
- * Clase que contiene las diferentes llamadas al API, incluyendo llamadas
- * para trabajar con contactos, grupos, mensajes y cuentas.
- */
 class SmsApi {
 
-    const VERSION = '0.1.0';
+    var $contactsResource;
+    var $groupsResource;
 
-	public $contacts;
-	public $groups;
-	public $messages;
-	public $account;
+    function __construct($apiKey, $apiSecret, $apiUrl,$assoc=false){
+        $this->contactsResource = new ContactsResource($apiKey,$apiSecret, $apiUrl,$assoc);
+        $this->groupsResource = new GroupsResource($apiKey,$apiSecret, $apiUrl,$assoc);
+        $this->messagesResource = new MessagesResource($apiKey,$apiSecret, $apiUrl,$assoc);
+    }
 
-    /**
-     * @param string $api_key
-     * @param string $secret_key
-     * @param string $api_url
-     */
-    function SmsApi($api_key, $secret_key, $api_url){
-		$this->contacts	= new ContactsApi($api_key, $secret_key, $api_url);
-		$this->groups	= new GroupsApi($api_key, $secret_key, $api_url);
-		$this->messages	= new MessagesApi($api_key, $secret_key, $api_url);
-		$this->account	= new AccountsApi($api_key, $secret_key, $api_url);
-	}
+    function contacts(){
+        return $this->contactsResource;
+    }
+
+    function groups(){
+        return $this->groupsResource;
+    }
+
+    function messages(){
+        return $this->messagesResource;
+    }
+
+
 
 }
