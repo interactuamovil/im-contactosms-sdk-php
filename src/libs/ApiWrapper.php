@@ -105,6 +105,7 @@ class ApiWrapper {
             "Content-type: application/json",
             "Date: $datetime",
             "Authorization: IM $this->apiKey:$hash",
+            "X-IM-ORIGIN: IM_SDK_PHP",
         );
         // print($hash."\n");
         
