@@ -13,17 +13,15 @@ Ejemplo de creación de instancia del api:
     
 ```php
     require 'im-contactosms-sdk-php/src/SmsApi.php';
-    $api = new SmsApi(API_KEY, API_SECRET_KEY, API_URL);
+    /* I want my responses as objects... did you want arrays? 
+        change last parameter to true */ 
+    $api = new SmsApi(API_KEY, API_SECRET, API_URL, false);  
+
 ```
 
 Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api:
 
 ```php
-
-    /* I want my responses as objects... did you want arrays? 
-        change last parameter to true */ 
-    $api = new SmsApi(API_KEY, API_SECRET, API_URL, false);  
-
 
     $contacts = $api->contacts()
         ->getContacts('12345678' /* Or a name, it works too */,
