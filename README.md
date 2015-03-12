@@ -19,12 +19,23 @@ Ejemplo de creación de instancia del api:
 Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api:
 
 ```
-    $contacts = $api->contacts()->getContacts('12345678' /* Or a name, it works too */,/*limit*/ 10,/* offset */ 0, /* contact status */'SUSCRIBED');
-
-    $groups = $api->groups()->getGroups("my group" /*$query*/, 0 /*$limit*/,0 /* $offset */,false /*$shortResults*/);
+    $api = new SmsApi(API_KEY, API_SECRET, API_URL, true); 
     
-    $message = $api->messages()->sendToContact("50212345678", "Sent from PHP SDK");
+    $contacts = $api->contacts()
+        ->getContacts('12345678' /* Or a name, it works too */,
+        /*limit*/ 10,/* offset */ 0, 
+        /* contact status */'SUSCRIBED');
+
+    $groups = $api->groups()
+        ->getGroups("my group" /*$query*/,
+         0 /*$limit*/,0 /* $offset */,
+         false /*$shortResults*/);
+    
+    $message = $api->messages()
+        ->sendToContact("50212345678", 
+        "Sent from PHP SDK");
     if ($message->status=="OK") echo "Mensaje enviado..."
+
 ```
 
 Ejemplos
