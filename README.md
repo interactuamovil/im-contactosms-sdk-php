@@ -11,16 +11,16 @@ para utilizar el API.
 
 Ejemplo de creación de instancia del api:
     
-```
+```php
     require 'im-contactosms-sdk-php/src/SmsApi.php';
     $api = new SmsApi(API_KEY, API_SECRET_KEY, API_URL);
 ```
 
 Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api:
 
-```
+```php
     $api = new SmsApi(API_KEY, API_SECRET, API_URL, true); 
-    
+
     $contacts = $api->contacts()
         ->getContacts('12345678' /* Or a name, it works too */,
         /*limit*/ 10,/* offset */ 0, 
