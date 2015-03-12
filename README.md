@@ -21,7 +21,19 @@ Ejemplo de creación de instancia del api:
 
 ```
 
-Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api:
+Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api, el formato de la respuesta es:
+```php
+
+    (array/StdObj) response
+    [
+        status => (string)"OK",
+        ok => (boolean)true,
+        code => (int)200,
+        headers => (array/StdObj)[/* the headers */]
+        data => (array/StdObj)[/*the data*/]
+    ];
+
+```
 
 ```php
 
@@ -29,20 +41,20 @@ Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages
         ->getContacts('12345678' /* Or a name, it works too */,
         /*limit*/ 10,/* offset */ 0, /* contact status */'SUSCRIBED');
 
-    if ($contacts->status=="OK") /* do something */ ;
+    if ($contacts->ok) /* do something */ ;
 
 
     $groups = $api->groups()
         ->getGroups("my group" /*$query*/, 0 /*$limit*/,0 /* $offset */,
          false /*$shortResults*/);
 
-    if ($groups->status=="OK") /* do something */ ;
+    if ($groups->ok) /* do something */ ;
 
     
     $message = $api->messages()
         ->sendToContact("50212345678", "Sent from PHP SDK");
 
-    if ($message->status=="OK") echo "Mensaje enviado..."
+    if ($message->ok) echo "Mensaje enviado..."
 
 ```
 

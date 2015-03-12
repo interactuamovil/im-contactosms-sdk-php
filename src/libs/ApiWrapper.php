@@ -127,7 +127,8 @@ class ApiWrapper {
         if ($has_status) $status = $status[1];
         $data = array(
             'code' => $response_code,
-            'status' => $status,
+            'status' => $status+0,
+            'ok' => $status=="OK",
             'response_headers' => $http_response_header,
             'data' => $json,
         );
