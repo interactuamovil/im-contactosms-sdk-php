@@ -13,6 +13,8 @@ Ejemplo de creación de instancia del api:
     
 ```php
     require 'im-contactosms-sdk-php/src/SmsApi.php';
+
+    
     /* I want my responses as objects... did you want arrays? 
         change last parameter to true */ 
     $api = new SmsApi(API_KEY, API_SECRET, API_URL, false);  
