@@ -43,14 +43,25 @@ Ejemplos de llamadas al API:
         ->getContacts('12345678' /* Or a name, it works too */,
         /*limit*/ 10,/* offset */ 0, /* contact status */'SUSCRIBED');
 
-    if ($contacts->ok) /* do something */ ;
+    if ($response->ok){
+        /* Do something */
+        echo "Mis contactos son: \n";
+        foreach ($response->data as $contact){
+            echo "$contact->msisdn : $contact->first_name\n";
+        }
+    }
 
 
     $groups = $api->groups()
         ->getGroups("my group" /*$query*/, 0 /*$limit*/,0 /* $offset */,
          false /*$shortResults*/);
 
-    if ($groups->ok) /* do something */ ;
+    if ($groups->ok){
+        echo "Mis grupos\n";
+        foreach ($groups->data as $group){
+            echo " Grupo: $group->name, miembros: {$group->members->total}\n";
+        }
+    }
 
     
     $message = $api->messages()

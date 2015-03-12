@@ -126,8 +126,8 @@ class ApiWrapper {
         $has_status = preg_match('/\ ([^\ ]+)$/', $http_response_header[0], $status);
         if ($has_status) $status = $status[1];
         $data = array(
-            'code' => $response_code,
-            'status' => $status+0,
+            'code' => $response_code+0,
+            'status' => $status,
             'ok' => $status=="OK",
             'response_headers' => $http_response_header,
             'data' => $json,
