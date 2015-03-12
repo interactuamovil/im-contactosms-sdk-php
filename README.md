@@ -21,7 +21,8 @@ Ejemplo de creación de instancia del api:
 
 ```
 
-Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages()`  en el objeto de api, el formato de la respuesta es:
+Para hacer llamadas al API pueden utilizarse los métodos `contacts()`, `groups()` y `messages()`  en el objeto de api, el formato de la respuesta es:
+
 ```php
 
     (array/StdObj) response
@@ -34,6 +35,7 @@ Para hacer llamadas al API puede utilizarse `contacts()`, `groups()` y `messages
     ];
 
 ```
+Ejemplos de llamadas al API:
 
 ```php
 
