@@ -30,7 +30,7 @@ Para hacer llamadas al API pueden utilizarse los métodos `contacts()`, `groups(
         status => (string)"OK",
         ok => (boolean)true,
         code => (int)200,
-        headers => (array/StdObj)[/* the headers */]
+        headers => (array)[/* the headers */]
         data => (array/StdObj)[/*the data*/]
     ];
 
