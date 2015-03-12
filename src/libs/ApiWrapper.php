@@ -120,7 +120,6 @@ class ApiWrapper {
         $context = stream_context_create($options);
         $data = file_get_contents($url,false, $context);
         $json = json_decode($data,$this->assoc);
-        // var_dump($http_response_header);
         $has_code = preg_match('/\ (\d+)\ /', $http_response_header[0], $response_code);
         if ($has_code) $response_code = $response_code[1];
         else $response_code = null;

@@ -1,5 +1,5 @@
 <?php
-include_once("ApiWrapper.php");
+require_once("ApiWrapper.php");
 
 class GroupsResource extends ApiWrapper {
 

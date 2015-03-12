@@ -1,13 +1,14 @@
 <?php
 
-include_once("libs/ContactsResource.php");
-include_once("libs/GroupsResource.php");
-include_once("libs/MessagesResource.php");
+require_once("libs/ContactsResource.php");
+require_once("libs/GroupsResource.php");
+require_once("libs/MessagesResource.php");
 
 class SmsApi {
 
     var $contactsResource;
     var $groupsResource;
+    var $messagesResource;
 
     function __construct($apiKey, $apiSecret, $apiUrl,$assoc=false){
         $this->contactsResource = new ContactsResource($apiKey,$apiSecret, $apiUrl,$assoc);
@@ -26,7 +27,5 @@ class SmsApi {
     function messages(){
         return $this->messagesResource;
     }
-
-
 
 }
