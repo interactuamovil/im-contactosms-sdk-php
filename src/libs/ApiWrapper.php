@@ -94,12 +94,8 @@ class ApiWrapper {
     public function send($url, $params, $method, $body){
         if ($params) $url = $url."?".$params;
         $datetime = gmdate("D, d M Y H:i:s T");
-        // print($datetime."\n");
         $authentication = $this->apiKey.$datetime.$params.$body;
-        // print($authentication."|\n");
-        // print($this->apiSecret."|\n");
         $hash = hash_hmac("sha1",$authentication, $this->apiSecret,true);
-        // print($hash."\n");
         $hash = base64_encode($hash);
         $headers = array(
             "Content-type: application/json",
@@ -107,7 +103,6 @@ class ApiWrapper {
             "Authorization: IM $this->apiKey:$hash",
             "X-IM-ORIGIN: IM_SDK_PHP",
         );
-        // print($hash."\n");
         
         $options = array(
             'http' => array(
@@ -132,6 +127,7 @@ class ApiWrapper {
             'response_headers' => $http_response_header,
             'data' => $json,
         );
+        var_dump($data);
         return $this->assoc?$data:(object)$data;
     }
 }

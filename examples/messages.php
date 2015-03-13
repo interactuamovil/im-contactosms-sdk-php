@@ -2,6 +2,10 @@
 date_default_timezone_set("America/Guatemala");
 include("../src/SmsApi.php");
 
+define('API_KEY', 'Your api key');
+define('API_SECRET', 'Your api secret');
+define('API_URL', 'Your api url');
+
 $api = new SmsApi(API_KEY, API_SECRET, API_URL, false);
 
 

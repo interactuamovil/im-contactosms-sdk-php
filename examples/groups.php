@@ -1,6 +1,11 @@
 <?php
 include("../src/SmsApi.php");
 
+define('API_KEY', 'Your api key');
+define('API_SECRET', 'Your api secret');
+define('API_URL', 'Your api url');
+
+
 $api = new SmsApi(API_KEY, API_SECRET, API_URL, false /* Now I want objects... did you want array? change last parameter to true */);
 
 // Response format:

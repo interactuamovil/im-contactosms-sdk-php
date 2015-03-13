@@ -2,6 +2,10 @@
 
 include("../src/SmsApi.php");
 
+define('API_KEY', 'Your api key');
+define('API_SECRET', 'Your api secret');
+define('API_URL', 'Your api url');
+
 $api = new SmsApi(API_KEY, API_SECRET, API_URL, true); // hey you'll have your responses in arrays, did you want StdObject? change last parameter to false
 
 // Response format:
@@ -14,12 +18,6 @@ $api = new SmsApi(API_KEY, API_SECRET, API_URL, true); // hey you'll have your r
 // ];
 
 
-/// Deleting a contact....
-echo ("Deleting contact...");
-$response = $api->contacts()->deleteContact("50212345678");
-if ($response['ok']) echo "Contact deleted\n";
-else echo "Something went wrong here is the data";
-var_dump($response);
 
 /// Creating a contact......
 echo ("Creating contact...");
@@ -53,4 +51,13 @@ $response = $api->contacts()->getContactGroups("50212345678");
 echo "My contact belongs to:\n";
 if ($response['ok']) foreach ($response['data'] as $group){
     echo $group['name']."\n";
+}
+
+/// Deleting a contact....
+echo ("Deleting contact...");
+$response = $api->contacts()->deleteContact("50212345678");
+if ($response['ok']) echo "Contact deleted\n";
+else {
+    echo "Something went wrong here is the data";
+    var_dump($response);
 }
