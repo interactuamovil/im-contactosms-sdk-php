@@ -15,8 +15,8 @@ Ejemplo de creación de instancia del api:
     require 'im-contactosms-sdk-php/src/SmsApi.php';
 
     
-    /* I want my responses as objects... did you want arrays? 
-        change last parameter to true */ 
+    /* Quiero mis respuestas como StdObj... querías arrays? 
+        cambia el último parámetro a true */ 
     $api = new SmsApi(API_KEY, API_SECRET, API_URL, false);  
 
 ```
