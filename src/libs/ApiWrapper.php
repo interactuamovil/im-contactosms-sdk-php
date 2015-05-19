@@ -127,7 +127,6 @@ class ApiWrapper {
             'response_headers' => $http_response_header,
             'data' => $json,
         );
-        var_dump($data);
         return $this->assoc?$data:(object)$data;
     }
 }
